@@ -100,8 +100,6 @@ const crearPlantilla = (data) => {
 };
 
 /*  mostrar detalle de cada pokemon*/
-/* const onlyPokemon = (data) =>{
-}*/
 listPokemon.addEventListener('click', (e)=>{
   const unitPokemon = data.find(poke => poke.num === e.target.id);
   contentPokedex.style.display = 'none';
