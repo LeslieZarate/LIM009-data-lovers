@@ -26,7 +26,6 @@ main.addEventListener('click', (e) => {
   pagePokedex.style.display = 'none';
   pageEvolution.style.display = 'none';
   // pageNews.style.display = 'none';
-
   if (e.target.id === 'pokedex') {
     pokedexUnit.style.display = 'none';
     pagePokedex.style.display = 'block';
@@ -42,7 +41,6 @@ main.addEventListener('click', (e) => {
     pageHome.style.display = 'block';
   }
 });
-
 /* ***ANIMACION SLIDER */
 let btnleft = document.getElementById('right');
 let btnright = document.getElementById('left');
