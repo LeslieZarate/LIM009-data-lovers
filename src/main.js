@@ -1,18 +1,21 @@
+/* eslint-disable id-length */
 let pokemonData;
 let pokedexData;
-fetch('data/pokemon/pokemon.json')
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    pokemonData = data.pokemon;
-    // console.log(pokemonData);
-    pokedexData = pokemon.showListPokemon(pokemonData);
+const fetchData = () =>{
+  fetch('data/pokemon/pokemon.json')
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      pokemonData = data.pokemon;
+      // console.log(pokemonData);
+      pokedexData = pokemon.showListPokemon(pokemonData);
     // document.getElementById('list-pokemon').innerHTML = drawTemplate(pokemonData);
-  });
-/* .catch(error => {
-    console.log('hay un error', error);
-  });*/
+    })
+    .catch(error => document.write('No se pudo cargar los datos ', error));
+};
+
+fetchData();
 
 // 1. MENU 
 const main = document.getElementById('main');
@@ -21,19 +24,26 @@ const pagePokedex = document.getElementById('page-pokedex');
 const pageEvolution = document.getElementById('page-evolution');
 const pageStatistics = document.getElementById('page-statistics');
 
-/* data
+/* DATA
 const pokemonData = POKEMON.pokemon;
 const pokedexData = pokemon.showListPokemon(pokemonData);*/
-// Elementos  
+
+// ELEMENTOS  
 const themeTitle = document.getElementById('theme-title'); // Titulo de la accion que se ejecuto
+const contentPokedex = document.getElementById('content-pokedex');// contiene la lista y botones de pagina de pokedex
 const listPokemon = document.getElementById('list-pokemon'); // contenedor donde se mostrara los pokemones
+const contentPokemon = document.getElementById('content-pokemon');// contiene detalle de pokemon
+const detailPokemon = document.getElementById('detail-pokemon'); // donde se desplegara la informacion de detalle de pokemon
+// BOTONES 
+const btnGetBack = document.getElementById('btn-getBack');
+
 // ORDENAR
 const orderPokemon = document.getElementById('order-pokemon'); // boton select para ordenar pokemon
 // FILTRAR
 const filterSelect = document.getElementById('filter-select'); // boton de opciones de filtrado
 const filterSpecific = document.getElementById('filter-specific'); // boton de filtrado especifico*/
 
-// eslint-disable-next-line id-length
+// MENU DE LA PAGINA 
 main.addEventListener('click', (e) => {
   pageHome.style.display = 'none';
   pagePokedex.style.display = 'none';
@@ -42,6 +52,7 @@ main.addEventListener('click', (e) => {
 
   if (e.target.id === 'pokedex') {
     pagePokedex.style.display = 'block';
+    changeContent(contentPokemon, contentPokedex);
     listPokemon.innerHTML = drawTemplate(pokedexData); // MUestro
   } else if (e.target.id === 'evolution') {
     pageEvolution.style.display = 'block';
@@ -51,6 +62,12 @@ main.addEventListener('click', (e) => {
     pageHome.style.display = 'block';
   }
 });
+
+// CAMBIAR CONTENEDORES 
+const changeContent = (content1, content2) => {
+  content1.style.display = 'none';
+  content2.style.display = 'block';
+};
 
 // DIBUJANDO POKEMON
 const drawTemplate = (data) => {
@@ -65,6 +82,29 @@ const drawTemplate = (data) => {
   }
   return totalCards;
 };
+// DESCRIPCION DE CADA POKEMON 
+listPokemon.addEventListener('click', (e)=>{
+  changeContent(contentPokedex, contentPokemon);
+  const unitPokemon = pokemonData.find(poke => poke.num === e.target.id);
+  let car = `
+  <div class="flex-unit">
+    <h2>${unitPokemon.num}</h2>   
+    <img src="${unitPokemon.img}">
+    <h2>${unitPokemon.name}</h2>
+    <p><strong>Altura :</strong> ${unitPokemon.height}</p>        
+    <p><strong>Peso :</strong> ${unitPokemon.weight}</p>
+    <p><strong>Huevo :</strong> ${unitPokemon.egg}</p>    
+    <p><strong>Tipo :</strong>${unitPokemon.type}</p>
+    <p><strong>Apariciones :</strong>${unitPokemon.avg_spawns}</p>
+    <p><strong>Debilidades :</strong>${unitPokemon.weaknesses}</p>        
+    <p><strong>Dulces :</trong>${unitPokemon.candy}</p>
+    <p><strong>Cantidad Dulces :</strong> ${unitPokemon.candy_count} </p>    
+  </div>`;    
+  detailPokemon.innerHTML = car;
+  btnGetBack.addEventListener('click', () =>{
+    changeContent(contentPokemon, contentPokedex);
+  }); 
+});
 
 // ORDENAR POKEMON
 orderPokemon.addEventListener('change', () => {

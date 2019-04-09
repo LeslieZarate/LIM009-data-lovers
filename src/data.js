@@ -78,6 +78,7 @@ const filterEvolution = (data, condicion) => {
   }
 };
 
+/*
 const listTypePokemon = (data) => {
   const arrTipos = [];
   let tipo = [];
@@ -89,9 +90,6 @@ const listTypePokemon = (data) => {
   });
   return tipo;
 };
-const computePercentage = (part, total) => { /* porcentaje*/
-  return (part / total) * 100;
-};
 
 const computeTypeStats = (data) => {
   let dataPorcentaje = [];
@@ -99,20 +97,17 @@ const computeTypeStats = (data) => {
   const types = listTypePokemon(data);
   for (let i = 0; i < types.length; i++) {
     countType = filterData(data, types[i]);
-    dataPorcentaje.push({ type: types[i], cantidad: countType.length, porcentaje: computePercentage(countType.length, data.length) });
+    dataPorcentaje.push({ type: types[i], cantidad: countType.length, porcentaje: (countType.length / data.length) * 100});
   }
   return dataPorcentaje;
 };
 // const datapokedex = POKEMON.pokemon;
-// console.log(computeTypeStats(datapokedex));
-
+// console.log(computeTypeStats(datapokedex));*/
 
 window.pokemon = {
   showListPokemon,
   sortData,
   filterData,
   filterEvolution,
-  listTypePokemon,
-  computePercentage,
-  computeTypeStats
+  
 };

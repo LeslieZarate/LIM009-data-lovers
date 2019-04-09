@@ -85,7 +85,7 @@ describe('pokemon', () => {
     test('Debería retornar un nuevo array ', () => {
       const dolly = [... input1];
       expect(pokemon.sortData(input1, apariciones, ascendente)).not.toBe(output1A);
-      expect(dolly).toBe(input1);
+      expect(dolly).not.toBe(input1);
     });
 
     test('Debería retornar un nuevo array ordenado ascendentemente por Apariciones', () => {
