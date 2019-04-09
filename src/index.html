@@ -1,146 +1,164 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 "/>
+    <title>Data Lovers</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 ">
     <title>Data Lovers</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">   
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!--Section header -->
     <header>
-      <div class="container-header">
+      <div class="container">
         <div class="row">
           <div class="col-xs-12 nav">
-            <img src="img/logomin.png"  alt="logo" >            
-            <input type="checkbox" id="toggle"/>
-            <label for="toggle"><i class="fas fa-bars"></i></label>            
+            <img src="img/logomin.png"  alt="logo" class="img-logo float-left" />            
+            <input type="checkbox" class = "display-none" id="toggle">
+            <label for="toggle" class="float-right"><i class="fas fa-bars"></i></label>            
             <nav class="navbar" > 
               <ul class="main-nav" id="main">
-                <li><a href="#index"    class="nav-links" id="home"> Inicio </a></li>
-                <li><a href="#Pokedex"  class="nav-links" id="pokedex"> Pokedex </a></li>
-                <li><a href="#Evolucion" class="nav-links" id="evolution"> Evolución </a></li> 
-                <li><a href="https://pokemongolive.com/es/" class="nav-links" id="news"> Noticias </a></li>    
+                <li><a href="#Home"    id="home"> Inicio </a></li>
+                <li><a href="#Pokedex"  id="pokedex"> Pokedex </a></li>
+                <li><a href="#Evolucion"  id="evolution"> Evolución </a></li> 
+                <li><a href="#Estadísticas"  id="statistics"> Estadísticas </a></li>    
               </ul>
             </nav>                         
           </div>
         </div>
       </div>
-    </header>  
-    <!--Section home -->
-    <section id="page-home">
-      <div class="row">
-        <div class="col-xs-12">
-          <section id="Slider">
-            <div id="conteinerSlider" class="conteinerSlider">
-              <div class="conteinerImg"><img src="img/Slider1.jpg" alt="slider1"></div>
-              <div class="conteinerImg"><img src="img/Slider2.jpg" alt="slider2"></div>
-              <div class="conteinerImg"><img src="img/Slider3.jpg" alt="slider3"></div>
-            </div>
-            <img id="left" class="btnLeft" src="img/flecha-hacia-la-izquierda.png " alt="flecha-derecha">
-            <img id="right" class="btnRight" src="img/flecha-derecha.png"  alt="flecha-derecha">    
-          </section>          
-        </div>
-      </div>
-    </section> 
-
-    <!--Section Pokedex -->
-    <section id="page-pokedex">
-      <div class="container">
+    </header>
+    <main class="p1">
+      <!--Section Home -->
+      <section id="page-home">
         <div class="row">
-          <div class="col-xs-12 m1-p1" id = "content-pokedex">
-            <h1>Conoce a los 151 Pokemon de la regio Kanto</h1>
-            <div class="btn-select ">
-              <div  class="col-xs-3 btn-s">
-                <select  id="order-pokemon">
-                  <option disabled selected>Ordenar por:</option>
-                  <option value="avg_spawns"> Apariciones </option> 
-                  <option value="az"> A - Z </option> 
-                  <option value="za"> Z - A </option>
-                </select>
-              </div>
-              <div  class="col-xs-3 btn-s">
-                <select id="filterSelect">
-                  <option selected disabled >Filtrar Por</option>
-                  <option value="1">Tipo</option>
-                  <option value="2">Evolucion</option> 
-                </select>
-              </div>            
-              <div class="col-xs-3 btn-s" id="filterSpecific"></div>
-            </div>
-            <div>
-              <h2 id="theme-title"></h2>
-              <div  class="list-pokemon flex-center" id="list-pokemon"></div>
-            </div>          
+          <div class="col-xs-12">
+            <div class="slider">
+              <ul>
+                <li>
+                  <img src="http://dominicushoeve.com/wp-content/uploads/ktz/latest-high-resolution-wallpaper-1920x1080-70558-pictures-high-resolution-wallpaper-30whtvl34j4r12m8b0c1sa.jpg" alt="">
+                </li>
+                <li>
+                  <img src="http://youghaltennisclub.ie/wp-content/uploads/2014/06/Tennis-Wallpaper-High-Definition-700x300.jpg" alt="">
+                </li>
+                <li>
+                  <img src="http://welltechnically.com/wp-content/uploads/2013/08/android-wallpapers-700x300.jpg" alt="">
+                </li>
+                <li>
+                  <img src="http://welltechnically.com/wp-content/uploads/2013/09/android-widescreen-wallpaper-14165-hd-wallpapers-700x300.jpg" alt="">
+                </li>
+              </ul>
+            </div>        
           </div>
-          <div class="col-xs-12 pokedex-unit flex-center" id = "pokedex-unit">
-            <div id="detail-pokemon"></div>
-            <button id="btn-getBack" type="button" class="btn">Regresar</button>             
         </div>
+      </section>
+      <!--Section Pokedex -->
+      <section id="page-pokedex" class="display-none">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12" id = "content-pokedex">
+              <h1>Conoce a los 151 Pokemon de la regio Kanto</h1>
+            <!--Botones -->
+              <div class="col-xs-12  p1 btn-select">
+                <!--Boton Filtrar -->
+                <div class="col-xs-12 col-sm-8 m1 float-left">
+                  <select id="filter-select" class="btn-style">
+                    <option selected disabled >Filtrar Por</option>
+                    <option value="1">TIPO</option>
+                    <option value="2">EVOLUCIÓN</option> 
+                  </select>
+                  <div class="m1-p1" id="filter-specific"></div>               
+                </div>
+                <!--Boton Ordenar -->
+                <div class="col-xs-12 col-sm-4 m1">
+                  <select  id="order-pokemon" class="btn-style">
+                    <option disabled selected>Ordenar por:</option>
+                    <option value="apariciones-desc"> Mayor # Apariciones </option> 
+                    <option value="apariciones-asc"> Menor # Apariciones </option> 
+                    <option value="name-asc"> A - Z </option> 
+                    <option value="name-desc"> Z - A </option>
+                  </select>
+                </div>
+              </div>             
+            <!--Todos los pokemones -->
+              <div class="col-xs-12">
+                <h2 id="theme-title"></h2>
+                <div id="list-pokemon" class="p1"></div>
+              </div>          
+            </div>
+            <!--Solo un pokemon -->
+            <div class="col-xs-12 display-none" id = "pokedex-unit">
+              <div id="detail-pokemon"></div>
+              <button id="btn-getBack" type="button">Regresar</button>             
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-    <!-- Detalle de pokemon -->
+      </section>
+      <!--Section Evolucion -->
+      <section id="page-evolution" class="display-none">
+        <div class="container ">
+          <div class="row">
+            <h1>EVOLUCÍON POKEMON</h1>
+            <!--Section de Instrucciones -->          
+            <aside class="col-xs-12 col-sm-4 m1 p1 color-border h-5">
+              <h2>Instrucciones para calcular Evolucion</h2>
+              <div class="p2 text-justify">
+                <ol >
+                  <li>Ingresa el nombre del pokemon en la primera casilla. </li>
+                  <li>Ingresa cuantos caramelos tienes hasta el momento.</li>
+                  <li>Haga click en "Descubrir"</li>
+                  <li>Presione el boton de "Otra Vez" para hacer un nuevo calculo</li>
+                </ol>        
+              </div>                      
+            </aside>
+            <!--Section Calcular Evolucion -->
+            <div class="col-xs-12 col-sm-8 m1 p1 color-border h-5">
+              <!--Section Formalario-->
+              <article  id="calculate-evolution" >
+                <h2>Descubre cuanto le falta a tu pokemon para evolcionar</h2> 
+                <form id="form" class="m1 p1">
+                  <div class="form-group">
+                    <label  for="name-pokemon">¿Cuál es tu pokemon?</label>
+                    <input class="form-control" id="name-pokemon" type="text" placeholder="Nombre pokemon" required="required" />
+                  </div>
+                  <div class="form-group">
+                    <label for="candy-count">¿Cuántos caramelos tienes?</label>
+                    <input class="form-control" id="candy-count" type="number" placeholder="Numero de Caramelos "  min="0" required="required" />
+                  </div>
+                  <div class="form-group">
+                    <button id="btn-calculate" >Descubrir</button>
+                  </div>                  
+                </form>
+              </article>
+              <!--Section Resulatdo-->          
+              <article  id="evolution-result" class="display-none">
+                <div id="result-pokemon"></div>
+                <div class="form-group">
+                  <button id="btn-new" type="button" class="btn">Otra Vez</button>
+                </div>  
+              </article>             
+            </div>
 
-    <!--Section Evolucion -->
-    <section id="page-evolution" class="page-evolution">
-      <div class="container ">
-        <div class="row m1-p1">
-          <!--Section de Instrucciones -->
-          <h1>EVOLUCÍON POKEMON</h1>
-          <aside class="col-xs-12 col-sm-4 m1-p1 color-border instructions" id="instructions">
-            <h2>Instrucciones para calcular Evolucion</h2>
-            <div class="list-instructions blue-color">
-              <ol>
-                <li>Ingresa el nombre del pokemon en la primera casilla. </li>
-                <li>Ingresa cuantos caramelos tienes hasta el momento.</li>
-                <li>Haga click en "Descubrir"</li>
-                <li>Presione el boton de "Otra Vez" para hacer un nuevo calculo</li>
-              </ol>        
-            </div>
-                      
-          </aside>
-          <!--Section Calcular Evolucion -->
-          <div class="col-xs-12 col-sm-8 m1-p1 color-border evolution">
-            <!--Section Formalario-->
-            <article  id="calculate-evolution">
-              <h2>Descubre cuanto le falta a tu pokemon para evolcionar</h2> 
-              <form id="form" >
-                <div class="form-group">
-                  <label  for="name-pokemon">¿Cuál es tu pokemon?</label>
-                  <input class="form-control" id="name-pokemon" type="text" placeholder="Nombre pokemon" required="required" />
-                </div>
-                <div class="form-group">
-                  <label for="candy-count">¿Cuántos caramelos tienes?</label>
-                  <input class="form-control" id="candy-count" type="number" placeholder="Numero de Caramelos "  min="0" required="required" />
-                </div>
-                <div class="form-group">
-                  <button id="btn-calculate"  class="btn">Descubrir</button>
-                </div>                  
-              </form>
-            </article>
-            <!--Section Resulatdo-->          
-            <article  id="evolution-result">
-              <div id="result-pokemon"></div>
-              <div class="form-group">
-                <button id="btn-new" type="button" class="btn">Otra Vez</button>
-              </div>  
-            </article>             
           </div>
         </div>
-      </div>
-    </section>
-    
+      </section>
+      <!--Section Estadistcia -->
+      <section id="page-statistics" class="display-none">
+        <div class="row">
+          <div class="col-xs-12">        
+          </div>
+        </div>
+      </section>
+    </main>
     <footer>
       <div class="container">
-        <div class="col-xs-12 ">
+        <div class="col-xs-12 p1">
           Copyright &copy; Your Website 2019
         </div>
       </div>
-    </footer>
-
-    <script src="./data/pokemon/pokemon.js"></script>   
+    </footer>   
+    <script src="./data/pokemon/pokemon.js"></script>
     <script src="data.js"></script>
     <script src="main.js"></script>
   </body>

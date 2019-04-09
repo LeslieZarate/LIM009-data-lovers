@@ -17,199 +17,143 @@
 .row:after {
   clear: both;
 } 
-section{
-  margin-top:80px;  
+
+main{
+  margin-top:100px;
+  height: auto;
 }
 footer {
   background:#2B4D86;
   color: #fff;
-  height: 60px; 
-  margin-bottom: 0px;
+  height: 70PX;  
+  margin-top: 20px;
 } 
-
-/* ocultar paginas */
-#page-pokedex , #page-evolution , #page-news , #evolution-result {
-  display: none;
+/***Estilos generales***/
+.p1{
+	padding: 1rem;
 }
+.p2{
+	padding: 2rem;
+}
+
+.m1{
+	margin: 1%;
+}
+.text-justify{
+	text-align: justify;
+}
+h1{
+  color: crimson;
+}
+h2{
+  color: #E3A90B;
+}
+
+.color-border{  
+  border : 1px solid #2B4D86;  
+}
+.h-5{
+	height: auto;
+}
+
+/***COLUMNAS****/
 [class*= "col"] {
   float: left;    
 }
 /******* Mobile First ******/
 .col-xs-12 { 
-  width: 100%;
-  
-}
-.col-xs-3{
-  width: 100%;    
+  width: 100%;  
 }
 
-aside, .evolution{
-  height: auto;
+.col-xs-6{
+	width: 48%;
 }
-
-
 /******** Tablet ******/
 @media (min-width: 768px) {
-  aside, .evolution{
-    height: 500px;
+  .col-sm-3{
+  	width: 31.3333%;
   }
   .col-sm-4{
     width: 30%;
   }
   .col-sm-8{
-    width: 66%;       
+    width: 66%; 
   }
-  .col-xs-3{
-    width: 30%;    
-  } 
- 
-}
-/* ------------------ ESTILOS GENERALES -------------- */
-h1,h2{
-  color: crimson;
-}
-.m1-p1{
-  padding: 1rem;
-  margin : 1% ;
-}
-.color-border{  
-  border : 1px solid #2B4D86;  
-}
 
-.blue-color {        
-  color : #2B4D86;
-  font-weight: bold;
-}
-/* estilos  de form */
-.evolution label{        
-  color : #2B4D86;
-  font-weight: bold;
-}
-
- 
-/* ------------------ ESTILOS GENERALES - PAGE INICIO ------------- */
-#Slider{
-  position: relative;
-  width: 100%;
-  height: 82vh;
-  margin:0 ;
-  overflow: hidden;
-}
-.conteinerSlider{
-  width: 300%; 
-  display: flex;
-  margin-left: -100%;    
-}
-.conteinerImg{
-  width: 33.4%;
- height: 82vh;   
-}
-.conteinerSlider img{
-  width: 100%;
-  height: 90vh;   
-}
-section>img{
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  top: 200px;
-  cursor:pointer;
-}
-.btnLeft{
- left: 15px;
-}
-.btnRight{
- right: 15px;
-}
-
-/* ------------------ ESTILOS GENERALES - PAGE POKEDEX ------------- */
-/*** Botones de selccionar*/
-.btn-select{
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 5rem;
+  .h-5{
+	height: 500px;
+  }
 
 }
- select{
-  width: 130px;
-  height: 30px;
-  background:rgb(65, 105, 173);
-  color: #fff;
-  font-size: 16px;
+
+/* Desktop */
+@media (min-width: 992px) {
+	.col-md-5{
+		width: 18%;
+	}
 }
- .btn-s{
-  margin:0 1rem;
-  text-align: center;
- }
- /* --pokemones***/
- .flex-center{
-   display: flex;
-   justify-content: center;
-  align-items: center;
- }
-.list-pokemon{
-  margin: 2rem;  
-  flex-wrap: wrap;   
+/**************** PAGE INICIO **************/
+.slider {
+	width: 95%;
+	margin: auto;
+	overflow: hidden;
+}
+
+.slider ul {
+	display: flex;
+	padding: 0;
+	width: 400%;
+	
+	animation: cambio 20s infinite alternate linear;
+}
+.slider li {
+	width: 100%;
+	list-style: none;
+}
+
+.slider img {
+	width: 100%;
+}
+
+@keyframes cambio {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
+	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
+	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
+}
+
+/***************** PAGE POKEDEX ***************/
+/** Estilos a los botones ***/
+.btn-select select {
+	width: 300px;
+	height: 50px;
+	border-radius: 10px;
 }
 .card-item {
-  flex-direction: column;
-  width: 250px;
-  height: 350px;
-  margin: 1rem;
   border-radius: 25px;
   background: rgba(183,222,237,1);
   font-family: 'Margarine', cursive;
-  border:1px solid #2B4D86;
-  color:#2B4D86;
-}
-.card-item img{
-  width: 150px;
-  height: 150px;
-}
-.card-item h2{
-  color: #E3A90B;
+  color:#2B4D86;  
 }
 .grow:hover{
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  transform: scale(1.03);
 }
 
-/** detalle pokemon*/
-.page-evolution{
-  height: 82vh;
-}
-.pokedex-unit{
-  height: 82vh;  
-}
-.flex-unit{
-  margin: 3rem 5rem;
-  padding:3rem; 
-  border: 1px solid #2B4D86;
-  background:rgba(183,222,237,1);
-  display: flex;
-  flex-direction: column;
-  justify-content:center;
-  align-items: center;
-}
-
-
-/* ------------------ ESTILOS GENERALES - PAGE EVOLUTION ------------- */
-/****** Instruciones *****/
-.list-instructions {
-  text-align: justify;
-  margin: 2rem;   
-}
-/****** Formulario *****/
+/************* PAGE EVOLUTION *****************/
+/*--------Formulario-------*/
 form{
-  margin-top:1rem;
   border-radius: 4px;	
   border: 1px solid  #E3A90B;
-  background-color: #f2f2f2;
-  padding: 1rem;    
+  background-color: #f2f2f2;     
 }
 .form-group{
   padding: 1rem;
@@ -234,34 +178,9 @@ button{
   font-family: 'Concert One', cursive; 
 }
 
-@media (min-width:320px){
-  .conteinerSlider{
-    background-color: #2B4D86;
-  }
-  .conteinerSlider img{
-    width: 100%;
-    height: 50vh;   
-  }
-  section>img{
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 150px;
-    cursor:pointer;
-  }
-  
-}
-@media (min-width:780px){
-  .conteinerSlider img{
-    width: 100%;
-    height: 80vh;   
-  }
+/***** PAGE - Estadistica ******/
 
-  section>img{
-    width: 60px;
-    height: 60px;
-    position: absolute;
-    top: 250px;
-    cursor:pointer;
-  }
-}
+ 
+
+
+
