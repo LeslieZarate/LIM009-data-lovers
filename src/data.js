@@ -78,7 +78,6 @@ const filterEvolution = (data, condicion) => {
   }
 };
 
-/*
 const listTypePokemon = (data) => {
   const arrTipos = [];
   let tipo = [];
@@ -101,13 +100,15 @@ const computeTypeStats = (data) => {
   }
   return dataPorcentaje;
 };
-// const datapokedex = POKEMON.pokemon;
-// console.log(computeTypeStats(datapokedex));*/
+const datapokedex = POKEMON.pokemon;
+console.log(computeTypeStats(datapokedex));
 
 window.pokemon = {
   showListPokemon,
   sortData,
   filterData,
   filterEvolution,
+  listTypePokemon,
+  computeTypeStats
   
 };

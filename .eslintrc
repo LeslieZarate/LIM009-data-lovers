@@ -9,7 +9,8 @@
   "globals": {
     "Set" : false,
     "POKEMON" : false,
-    "pokemon" : false
+    "pokemon" : false,
+    "Chart" : false
   },
   "rules": {
     "allowTernary": true,

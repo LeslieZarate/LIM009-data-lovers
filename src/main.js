@@ -1,7 +1,7 @@
 /* eslint-disable id-length */
 let pokemonData;
 let pokedexData;
-const fetchData = () =>{
+const fetchData = () => {
   fetch('data/pokemon/pokemon.json')
     .then(response => {
       return response.json();
@@ -9,12 +9,11 @@ const fetchData = () =>{
     .then(data => {
       pokemonData = data.pokemon;
       // console.log(pokemonData);
-      pokedexData = pokemon.showListPokemon(pokemonData);
-    // document.getElementById('list-pokemon').innerHTML = drawTemplate(pokemonData);
+      // pokedexData = pokemon.showListPokemon(pokemonData);
+      // document.getElementById('list-pokemon').innerHTML = drawTemplate(pokemonData);
     })
     .catch(error => document.write('No se pudo cargar los datos ', error));
 };
-
 fetchData();
 
 // 1. MENU 
@@ -53,7 +52,7 @@ main.addEventListener('click', (e) => {
   if (e.target.id === 'pokedex') {
     pagePokedex.style.display = 'block';
     changeContent(contentPokemon, contentPokedex);
-    listPokemon.innerHTML = drawTemplate(pokedexData); // MUestro
+    listPokemon.innerHTML = drawTemplate(pokemon.showListPokemon(pokemonData)); // MUestro
   } else if (e.target.id === 'evolution') {
     pageEvolution.style.display = 'block';
   } else if (e.target.id === 'statistics') {
@@ -83,7 +82,7 @@ const drawTemplate = (data) => {
   return totalCards;
 };
 // DESCRIPCION DE CADA POKEMON 
-listPokemon.addEventListener('click', (e)=>{
+listPokemon.addEventListener('click', (e) => {
   changeContent(contentPokedex, contentPokemon);
   const unitPokemon = pokemonData.find(poke => poke.num === e.target.id);
   let car = `
@@ -99,11 +98,11 @@ listPokemon.addEventListener('click', (e)=>{
     <p><strong>Debilidades :</strong>${unitPokemon.weaknesses}</p>        
     <p><strong>Dulces :</trong>${unitPokemon.candy}</p>
     <p><strong>Cantidad Dulces :</strong> ${unitPokemon.candy_count} </p>    
-  </div>`;    
+  </div>`;
   detailPokemon.innerHTML = car;
-  btnGetBack.addEventListener('click', () =>{
+  btnGetBack.addEventListener('click', () => {
     changeContent(contentPokemon, contentPokedex);
-  }); 
+  });
 });
 
 // ORDENAR POKEMON
@@ -136,7 +135,7 @@ orderPokemon.addEventListener('change', () => {
 });
 // FILTRAR POKEMON
 filterSelect.addEventListener('change', () => {
-  const listTypePokemon = (data) => {
+/* const listTypePokemon = (data) => {
     const arrTipos = [];
     let tipo = [];
     data.forEach(element => {
@@ -146,11 +145,11 @@ filterSelect.addEventListener('change', () => {
       tipo = [...new Set(arrTipos)];
     });
     return tipo;
-  };
+  };*/
 
   let typeSelect = filterSelect.value;
   let types = '';
-  const subOptionsOne = listTypePokemon(pokemonData);
+  const subOptionsOne = pokemon.listTypePokemon(pokemonData);
   const subOptionsSecond = ['Evolucion1', 'Evolucion2', 'Evolucion3'];
 
   if (typeSelect === '1') {
@@ -176,4 +175,30 @@ filterSelect.addEventListener('change', () => {
       document.getElementById('list-pokemon').innerHTML = drawTemplate(pokedexFiltrado);
     }
   });
+});
+
+// GRAFICANDO ESTADISTICAS 
+let grafics1 = document.getElementById('grafics1').getContext('2d');
+let chart = new Chart(grafics1, {
+  type: 'bar',
+  data: {
+    labels: pokemon.listTypePokemon(pokemonData),
+    datasets: [
+      {
+        label: 'mi grafica de bebidad',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        borderWidth: 1
+      }
+    ]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
 });
