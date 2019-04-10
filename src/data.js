@@ -56,6 +56,7 @@ const filterData = (data, condition) => {
 const filterEvolution = (data, condicion) => {
   let Evolucion1 = [];
   let Evolucion2 = [];
+
   let Evolucion3 = [];
   for (let i = 0; i < data.length; i++) {
     let element = data[i];
@@ -108,7 +109,7 @@ window.pokemon = {
   sortData,
   filterData,
   filterEvolution,
-  listTypePokemon,
-  computeTypeStats
+  computeTypeStats,
+  listTypePokemon
   
 };

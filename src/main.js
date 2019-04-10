@@ -56,6 +56,7 @@ main.addEventListener('click', (e) => {
   } else if (e.target.id === 'evolution') {
     pageEvolution.style.display = 'block';
   } else if (e.target.id === 'statistics') {
+    generarGrafica();
     pageStatistics.style.display = 'block';
   } else {
     pageHome.style.display = 'block';
@@ -178,27 +179,30 @@ filterSelect.addEventListener('change', () => {
 });
 
 // GRAFICANDO ESTADISTICAS 
-let grafics1 = document.getElementById('grafics1').getContext('2d');
-let chart = new Chart(grafics1, {
-  type: 'bar',
-  data: {
-    labels: pokemon.listTypePokemon(pokemonData),
-    datasets: [
-      {
-        label: 'mi grafica de bebidad',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-        borderWidth: 1
-      }
-    ]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
+const generarGrafica = ()=>{
+  let grafics1 = document.getElementById('grafics1').getContext('2d');
+  let chart = new Chart(grafics1, {
+    type: 'bar',
+    data: {
+      labels: pokemon.listTypePokemon(pokemonData),
+      datasets: [
+        {
+          label: 'mi grafica de bebidad',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          borderWidth: 1
         }
-      }]
+      ]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     }
-  }
-});
+  });
+
+}
