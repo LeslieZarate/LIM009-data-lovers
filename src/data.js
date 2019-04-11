@@ -91,25 +91,85 @@ const listTypePokemon = (data) => {
   return tipo;
 };
 
+const dataListPokemon = (dataPoke) => {
+  const dataCalculate = [];
+  let propiedad;
+  for (let i = 0; i < dataPoke.length; i++) {
+    propiedad = dataPoke[i].hasOwnProperty('next_evolution');
+    if (propiedad === true) {
+      propiedad = dataPoke[i].next_evolution.length;
+    } else {
+      propiedad = 0;
+    }
+    dataCalculate.push({
+      num: dataPoke[i].num,
+      name: dataPoke[i].name,
+      img: dataPoke[i].img,
+      candy_count: dataPoke[i].candy_count,
+      next_evolution: dataPoke[i].next_evolution,
+      num_evolutions: propiedad,     
+    });
+  }
+  return dataCalculate;
+};
+
+const computeStatsEvolution = (dataPoke, pokemon, candy_input) => {
+  const dataCalculatePokemon = dataListPokemon(dataPoke);
+  // buscando al pokemon
+  let pokemonFind = dataCalculatePokemon.find(poke => poke.name === pokemon);
+  // saber el numero de evoluciones 
+  const numberEvolutions = pokemonFind.num_evolutions;
+  // almacenar los datos de resultados
+  let arrResult = [];
+  // Evolucion de Pokemon
+  let pokemonEvolution;
+  // Hallar dulces que falta
+  let calculoEvolution;
+  if (numberEvolutions > 0) {
+    pokemonEvolution = dataCalculatePokemon.find(poke => poke.name === pokemonFind.next_evolution[0].name);
+    calculoEvolution = Math.abs(pokemonFind.candy_count - parseInt(candy_input));
+  } else {
+    pokemonEvolution = pokemonFind;  
+    calculoEvolution = 0;
+  }
+  arrResult.push({
+    pokemonFirstName: pokemonFind.name,
+    pokemonFirstImg: pokemonFind.img,
+    pokemonFirstCandy: pokemonFind.candy_count,
+    pokemonFirstCandyInput: candy_input,
+    pokemonEvolutionName: pokemonEvolution.name,
+    pokemonEvolutionImg: pokemonEvolution.img,
+    candyEvolution: calculoEvolution
+  });
+  return arrResult;
+};
+
 const computeTypeStats = (data) => {
-  let dataPorcentaje = [];
+  let dataPorcentaje = {};
   let countType;
   const types = listTypePokemon(data);
   for (let i = 0; i < types.length; i++) {
     countType = filterData(data, types[i]);
-    dataPorcentaje.push({ type: types[i], cantidad: countType.length, porcentaje: (countType.length / data.length) * 100});
-  }
+    dataPorcentaje[types[i]] = countType.length;
+  // dataPorcentaje.push({ type: types[i], cantidad: countType.length});
+  } 
+  
   return dataPorcentaje;
 };
+/*
 const datapokedex = POKEMON.pokemon;
-console.log(computeTypeStats(datapokedex));
+const res = computeTypeStats(datapokedex);
+
+console.log(Object.values(res)); */
 
 window.pokemon = {
   showListPokemon,
   sortData,
   filterData,
   filterEvolution,
-  computeTypeStats,
-  listTypePokemon
+  listTypePokemon,
+  computeStatsEvolution,
+  computeTypeStats
+  
   
 };

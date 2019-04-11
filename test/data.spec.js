@@ -57,6 +57,39 @@ const listEvolution3 = [
   { id: 3, num: '003', name: 'Venusaur', img: 'http://www.serebii.net/pokemongo/pokemon/003.png', prev_evolution: [{num: '001', name: 'Bulbasaur'}, {num: '002', name: 'Ivysaur'}]}
 ];
 
+const output4 = ['Grass', 'Poison', 'Water', 'Psychic'];
+
+const data3 = [ 
+  { id: 1, num: '001', name: 'Bulbasaur', img: 'http://www.serebii.net/pokemongo/pokemon/001.png', candy_count: 25, next_evolution: [{num: '002', name: 'Ivysaur'}, {num: '003', name: 'Venusaur'}]},
+  { id: 2, num: '002', name: 'Ivysaur', img: 'http://www.serebii.net/pokemongo/pokemon/002.png', candy_count: 100, next_evolution: [{num: '003', name: 'Venusaur'}]},
+  { id: 3, num: '003', name: 'Venusaur', img: 'http://www.serebii.net/pokemongo/pokemon/003.png', }
+];
+const poke = 'Ivysaur';
+const candyInput = 33;
+const resultEvol1 = [
+  {
+    pokemonFirstName: 'Ivysaur', 
+    pokemonFirstImg: 'http://www.serebii.net/pokemongo/pokemon/002.png', 
+    pokemonFirstCandy: 100, 
+    pokemonFirstCandyInput: 33,
+    pokemonEvolutionName: 'Venusaur', 
+    pokemonEvolutionImg: 'http://www.serebii.net/pokemongo/pokemon/003.png',
+    candyEvolution: 67
+  }
+];
+const poke2 = 'Venusaur';
+const resultEvol2 = [
+  {
+    pokemonFirstName: 'Venusaur', 
+    pokemonFirstImg: 'http://www.serebii.net/pokemongo/pokemon/003.png', 
+    pokemonFirstCandy: undefined, 
+    pokemonFirstCandyInput: 33,
+    pokemonEvolutionName: 'Venusaur', 
+    pokemonEvolutionImg: 'http://www.serebii.net/pokemongo/pokemon/003.png',
+    candyEvolution: 0
+  }
+];
+
 describe('pokemon', () => {
   test('debería ser un object', () => {
     expect(typeof pokemon).toBe('object');
@@ -145,6 +178,27 @@ describe('pokemon', () => {
     });
     test('deberia retornar un nuevo array ', () => {
       expect(pokemon.filterEvolution(data2, typeEvolution3)).not.toBe(listEvolution3);
+    });
+  });
+
+  describe(' Obtener todos solo los tipos de pokemones ', () => {
+    test(' listType deberia ser una funcion', () => {
+      expect(typeof pokemon.listTypePokemon).toBe('function');
+    });
+    test('deberia retornar un nuevo arrar con solo los tipos de pokemon', () => {
+      expect(pokemon.listTypePokemon(data)).toEqual(output4);
+    });
+  });
+
+  describe('Mostrar calculo de Evolucion ', () => {
+    test('computeStats deberia ser una funcion ', ()=>{
+      expect(typeof pokemon.computeStatsEvolution).toBe('function');
+    });
+    test('deebria retornar un nuevo array con el numero de evolcuiones  ', ()=>{
+      expect(pokemon.computeStatsEvolution(data3, poke, candyInput)).toEqual(resultEvol1);
+    });
+    test('deebria retornar un nuevo array con el numero de evolcuiones  ', ()=>{
+      expect(pokemon.computeStatsEvolution(data3, poke2, candyInput)).toEqual(resultEvol2);
     });
   });
 });

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable id-length */
 let pokemonData;
 let pokedexData;
@@ -9,7 +10,7 @@ const fetchData = () => {
     .then(data => {
       pokemonData = data.pokemon;
       // console.log(pokemonData);
-      // pokedexData = pokemon.showListPokemon(pokemonData);
+      pokedexData = pokemon.showListPokemon(pokemonData);
       // document.getElementById('list-pokemon').innerHTML = drawTemplate(pokemonData);
     })
     .catch(error => document.write('No se pudo cargar los datos ', error));
@@ -38,9 +39,16 @@ const btnGetBack = document.getElementById('btn-getBack');
 
 // ORDENAR
 const orderPokemon = document.getElementById('order-pokemon'); // boton select para ordenar pokemon
+
 // FILTRAR
 const filterSelect = document.getElementById('filter-select'); // boton de opciones de filtrado
-const filterSpecific = document.getElementById('filter-specific'); // boton de filtrado especifico*/
+const filterSpecific = document.getElementById('filter-specific'); // boton de filtrado especifico
+
+// FORMULARIO RESULT
+const calculateEvolution = document.getElementById('calculate-evolution');
+const evolutionResult = document.getElementById('evolution-result');
+const resultPokemon = document.getElementById('result-pokemon');
+const btnNew = document.getElementById('btn-new');
 
 // MENU DE LA PAGINA 
 main.addEventListener('click', (e) => {
@@ -52,8 +60,9 @@ main.addEventListener('click', (e) => {
   if (e.target.id === 'pokedex') {
     pagePokedex.style.display = 'block';
     changeContent(contentPokemon, contentPokedex);
-    listPokemon.innerHTML = drawTemplate(pokemon.showListPokemon(pokemonData)); // MUestro
+    listPokemon.innerHTML = drawTemplate(pokedexData); // MUestro
   } else if (e.target.id === 'evolution') {
+    cleanForm();
     pageEvolution.style.display = 'block';
   } else if (e.target.id === 'statistics') {
     generarGrafica();
@@ -68,8 +77,12 @@ const changeContent = (content1, content2) => {
   content1.style.display = 'none';
   content2.style.display = 'block';
 };
+const cleanForm = () => {
+  document.getElementById('form').reset();
+};
 
 // DIBUJANDO POKEMON
+/* pokedex */
 const drawTemplate = (data) => {
   let totalCards = [];
   for (let i = 0; i < data.length; i++) {
@@ -82,6 +95,44 @@ const drawTemplate = (data) => {
   }
   return totalCards;
 };
+/* Evolucion */
+const drawTemplateEvolution = (data) => {
+  let result;
+  for (let i = 0; i < data.length; i++) {
+    let pokemonInital = `
+      <h2>POKEMON ACTUAL:</h2>
+      <p>${data[i].pokemonFirstName}</p>
+      <img class="img-res" src='${data[i].pokemonFirstImg}'>`;
+    let pokemomEvolution = `
+      <h2>POKEMON EVOLUCION:</h2>
+      <p>${data[i].pokemonEvolutionName}</p>
+      <img class="img-res" src='${data[i].pokemonEvolutionImg}'>`;
+
+    if (data[i].pokemonFirstCandyInput < data[i].pokemonFirstCandy) {
+      result = `
+        <h1>RESULTADO :</h1>
+        ${pokemonInital}
+        <p>Tienes ${data[i].pokemonFirstCandyInput} dulces, te faltan ${data[i].candyEvolution} para evolucionar</p>                
+        ${pokemomEvolution}`;        
+    } else if (data[i].pokemonFirstCandy === undefined) {
+      result = `
+        <h1>RESULTADO :</h1>
+        <p>Este pokemon ya tuvo todas sus evoluciones</p>
+        ${pokemonInital}
+        <p>Te sobra ${data[i].pokemonFirstCandyInput}</p>`;
+    } else {
+      result = `
+        <h1>RESULTADO :</h1>
+        ${pokemonInital}
+        <h1>Este ya debio evolucionar a:</h1>                                    
+        ${pokemomEvolution}
+        <p>Tienes ${data[i].pokemonFirstCandyInput} dulces , te sobran  ${data[i].candyEvolution} para la siguiente evolcion</p>
+         `;
+    }
+  }
+  return result;
+};
+
 // DESCRIPCION DE CADA POKEMON 
 listPokemon.addEventListener('click', (e) => {
   changeContent(contentPokedex, contentPokemon);
@@ -134,20 +185,9 @@ orderPokemon.addEventListener('change', () => {
   themeTitle.innerHTML = `Pokedex ordenado por ${sortBy} ${sortOrder}`;
   listPokemon.innerHTML = drawTemplate(pokedexDataOrdered);
 });
+
 // FILTRAR POKEMON
 filterSelect.addEventListener('change', () => {
-/* const listTypePokemon = (data) => {
-    const arrTipos = [];
-    let tipo = [];
-    data.forEach(element => {
-      for (let i = 0; i < element.type.length; i++) {
-        arrTipos.push(element.type[i]);
-      }
-      tipo = [...new Set(arrTipos)];
-    });
-    return tipo;
-  };*/
-
   let typeSelect = filterSelect.value;
   let types = '';
   const subOptionsOne = pokemon.listTypePokemon(pokemonData);
@@ -178,18 +218,40 @@ filterSelect.addEventListener('change', () => {
   });
 });
 
+// EVOLUCION POKEMON
+const btnCalculate = document.getElementById('btn-calculate');
+btnCalculate.addEventListener('click', (e) => {
+  const validate = (string) => {
+    string = string.toLowerCase();
+    let stringValidate = string.charAt(0).toUpperCase() + string.slice(1);
+    return stringValidate;
+  };
+  const namePokemon = validate(document.getElementById('name-pokemon').value);
+  const candyCount = document.getElementById('candy-count').value;
+  const resultEvolution = pokemon.computeStatsEvolution(pokemonData, namePokemon, candyCount); // data resultado 
+  e.preventDefault();
+  changeContent(calculateEvolution, evolutionResult);
+  resultPokemon.innerHTML = drawTemplateEvolution(resultEvolution);
+
+  btnNew.addEventListener('click', () => {
+    cleanForm();
+    changeContent(evolutionResult, calculateEvolution);
+  });
+});
+
 // GRAFICANDO ESTADISTICAS 
 const generarGrafica = ()=>{
+  const arrayPoke = pokemon.computeTypeStats(pokemonData);
   let grafics1 = document.getElementById('grafics1').getContext('2d');
   let chart = new Chart(grafics1, {
     type: 'bar',
     data: {
-      labels: pokemon.listTypePokemon(pokemonData),
+      labels: Object.keys(arrayPoke),
       datasets: [
         {
           label: 'mi grafica de bebidad',
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          data: Object.values(arrayPoke),
           borderWidth: 1
         }
       ]
@@ -204,5 +266,5 @@ const generarGrafica = ()=>{
       }
     }
   });
-
-}
+  return chart;
+};
