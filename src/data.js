@@ -144,7 +144,7 @@ const computeStatsEvolution = (dataPoke, pokemon, candy_input) => {
   return arrResult;
 };
 
-const computeTypeStats = (data) => {
+const computeStatsType = (data) => {
   let dataPorcentaje = {};
   let countType;
   const types = listTypePokemon(data);
@@ -169,7 +169,5 @@ window.pokemon = {
   filterEvolution,
   listTypePokemon,
   computeStatsEvolution,
-  computeTypeStats
-  
-  
+  computeStatsType 
 };

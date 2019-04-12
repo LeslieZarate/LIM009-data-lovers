@@ -138,10 +138,13 @@ listPokemon.addEventListener('click', (e) => {
   changeContent(contentPokedex, contentPokemon);
   const unitPokemon = pokemonData.find(poke => poke.num === e.target.id);
   let car = `
-  <div class="flex-unit">
-    <h2>${unitPokemon.num}</h2>   
+  <div class="col-xs-12 col-sm-6 p2">
+    <h1>N° ${unitPokemon.num}</h1>   
     <img src="${unitPokemon.img}">
     <h2>${unitPokemon.name}</h2>
+  </div>
+  <div class="col-xs-12 col-sm-6 p2">
+    <h2>CARACTERISTICAS</h2>
     <p><strong>Altura :</strong> ${unitPokemon.height}</p>        
     <p><strong>Peso :</strong> ${unitPokemon.weight}</p>
     <p><strong>Huevo :</strong> ${unitPokemon.egg}</p>    
@@ -241,17 +244,36 @@ btnCalculate.addEventListener('click', (e) => {
 
 // GRAFICANDO ESTADISTICAS 
 const generarGrafica = ()=>{
-  const arrayPoke = pokemon.computeTypeStats(pokemonData);
+  const arrayPoke = pokemon.computeStatsType(pokemonData);
   let grafics1 = document.getElementById('grafics1').getContext('2d');
+  /* grafics1.canvas.parentNode.style.height = '500px';
+  grafics1.canvas.parentNode.style.width = '800px';*/
   let chart = new Chart(grafics1, {
     type: 'bar',
     data: {
       labels: Object.keys(arrayPoke),
       datasets: [
         {
-          label: 'mi grafica de bebidad',
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          label: 'Estadística de tipos de pokemon',
           data: Object.values(arrayPoke),
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            
+          ],
           borderWidth: 1
         }
       ]

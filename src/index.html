@@ -57,21 +57,23 @@
       <section id="page-pokedex" class="display-none">
         <div class="container">
           <div class="row">
-            <div class="col-xs-12" id = "content-pokedex">
-              <h1>Conoce a los 151 Pokemon de la regio Kanto</h1>
+            <div class="col-xs-12"  id = "content-pokedex">
+              <h1 class="m1">Conoce a los 151 Pokemon de la regio Kanto</h1>
             <!--Botones -->
-              <div class="col-xs-12  p1 btn-select">
+              <div class="col-xs-12 btn-select p2">
                 <!--Boton Filtrar -->
-                <div class="col-xs-12 col-sm-8 m1 float-left">
-                  <select id="filter-select" class="btn-style">
-                    <option selected disabled >Filtrar Por</option>
-                    <option value="1">TIPO</option>
-                    <option value="2">EVOLUCIÓN</option> 
-                  </select>
-                  <div class="m1-p1" id="filter-specific"></div>               
+                <div class="col-xs-6 col-sm-8 m1">
+                  <div class="col-xs-12 col-sm-4 mr">
+                      <select id="filter-select" class="btn-style ">
+                        <option selected disabled >Filtrar Por</option>
+                        <option value="1">TIPO</option>
+                        <option value="2">EVOLUCIÓN</option> 
+                      </select>
+                  </div>                  
+                  <div class="col-xs-12 col-sm-4 mt" id="filter-specific"></div>               
                 </div>
                 <!--Boton Ordenar -->
-                <div class="col-xs-12 col-sm-4 m1">
+                <div class="col-xs-6 col-sm-4 m1">
                   <select  id="order-pokemon" class="btn-style">
                     <option disabled selected>Ordenar por:</option>
                     <option value="apariciones-desc"> Mayor # Apariciones </option> 
@@ -80,7 +82,7 @@
                     <option value="name-desc"> Z - A </option>
                   </select>
                 </div>
-              </div>             
+              </div>              
             <!--Todos los pokemones -->
               <div class="col-xs-12">
                 <h2 id="theme-title"></h2>
@@ -88,9 +90,12 @@
               </div>          
             </div>
             <!--Solo un pokemon -->
-            <div class="col-xs-12 display-none" id = "content-pokemon">
-              <div id="detail-pokemon"></div>
-              <button id="btn-getBack" type="button">Regresar</button>             
+            <div class="col-xs-10 center display-none h-5" id = "content-pokemon">
+              <div id="detail-pokemon" class="col-xs-12 color-border p2 m1"></div>
+              <div class="col-xs-12 m1 " >
+                  <button id="btn-getBack"  type="button">Regresar</button>   
+              </div>
+                        
             </div>
           </div>
         </div>
@@ -139,7 +144,6 @@
                 </div>  
               </article>             
             </div>
-
           </div>
         </div>
       </section>
@@ -147,8 +151,9 @@
       <section id="page-statistics" class="display-none">
         <div class="container">
           <div class="row">
-            <div class="col-xs-12" id="grafics-statistics"> 
-              <canvas id="grafics1" ></canvas>              
+            <div class="col-xs-12 color-border p1"  id="grafics-statistics"> 
+              <h1>Cuadro estadistico de cantidad de pokemon segun el tipo </h1>
+              <canvas id="grafics1" class="m1" height=25vh width =80vw></canvas>              
             </div>
           </div>
         </div>        

@@ -90,6 +90,9 @@ const resultEvol2 = [
   }
 ];
 
+const output5 = {Grass: 1, Poison: 1, Water: 1, Psychic: 2};
+
+
 describe('pokemon', () => {
   test('debería ser un object', () => {
     expect(typeof pokemon).toBe('object');
@@ -191,7 +194,7 @@ describe('pokemon', () => {
   });
 
   describe('Mostrar calculo de Evolucion ', () => {
-    test('computeStats deberia ser una funcion ', ()=>{
+    test('computeStatsEvolution  deberia ser una funcion ', ()=>{
       expect(typeof pokemon.computeStatsEvolution).toBe('function');
     });
     test('deebria retornar un nuevo array con el numero de evolcuiones  ', ()=>{
@@ -199,6 +202,15 @@ describe('pokemon', () => {
     });
     test('deebria retornar un nuevo array con el numero de evolcuiones  ', ()=>{
       expect(pokemon.computeStatsEvolution(data3, poke2, candyInput)).toEqual(resultEvol2);
+    });
+  });
+
+  describe('Mostrar Estadistica de tipos de pokemon', () => {
+    test('computeStatsType  deberia ser una funcion ', ()=>{
+      expect(typeof pokemon.computeStatsType).toBe('function');
+    });
+    test('deebria retornar un objeto   ', ()=>{
+      expect(pokemon.computeStatsType(data)).toEqual(output5);
     });
   });
 });

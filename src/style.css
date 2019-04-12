@@ -8,7 +8,7 @@
 }
 .container {
   width: 100%;
-  text-align: center;
+  text-align: center;  
 }
 .row:before, .row:after {
   content: " ";
@@ -17,7 +17,6 @@
 .row:after {
   clear: both;
 } 
-
 main{
   margin-top:100px;
   height: auto;
@@ -39,6 +38,7 @@ footer {
 .m1{
 	margin: 1%;
 }
+
 .text-justify{
 	text-align: justify;
 }
@@ -55,6 +55,10 @@ h2{
 .h-5{
 	height: auto;
 }
+.center{
+  margin : 0 auto;
+}
+
 
 /***COLUMNAS****/
 [class*= "col"] {
@@ -65,9 +69,23 @@ h2{
   width: 100%;  
 }
 
+.col-xs-10 { 
+  width: 80%;  
+  margin : 0 10%;;
+}
+
 .col-xs-6{
 	width: 48%;
 }
+
+.mt{
+  margin-top: 1rem;
+}
+
+p, li{
+  color:#2B4D86; 
+}
+
 /******** Tablet ******/
 @media (min-width: 768px) {
   .col-sm-3{
@@ -79,18 +97,26 @@ h2{
   .col-sm-8{
     width: 66%; 
   }
-
-  .h-5{
-	height: 500px;
+  .col-sm-6{
+    width: 48%
   }
-
+  .mr{
+    margin-right: 10px;
+  }
+  .mt{
+    margin-top: 0rem;
+  }
+  .h-5{
+	height: 510px;
+  }
 }
 
 /* Desktop */
 @media (min-width: 992px) {
 	.col-md-5{
 		width: 18%;
-	}
+  }
+
 }
 /**************** PAGE INICIO **************/
 .slider {
@@ -132,15 +158,20 @@ h2{
 /***************** PAGE POKEDEX ***************/
 /** Estilos a los botones ***/
 .btn-select select {
-	width: 300px;
-	height: 50px;
-	border-radius: 10px;
+	width: 100%;
+	height: 40px;
+  border-radius: 10px;
+  border:1px solid black;
 }
 .card-item {
   border-radius: 25px;
   background: rgba(183,222,237,1);
   font-family: 'Margarine', cursive;
   color:#2B4D86;  
+}
+.card-item img{
+  width: 120px;
+  height: 120px;
 }
 .grow:hover{
   -webkit-transform: scale(1.03);
